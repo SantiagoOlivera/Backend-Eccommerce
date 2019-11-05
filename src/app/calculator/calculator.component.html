@@ -1,0 +1,19 @@
+<p>calculator works!</p>
+<label for="">Valor 1</label>
+<input id="valor1" type="text" [(ngModel)] = "valor1"/>
+<label for="">Valor 2</label>
+<input id="valor2" type="text" [(ngModel)] = "valor2"/>
+
+<select [(ngModel)] = "operador" >
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="X">X</option>
+    <option value="/">/</option>
+</select>
+
+<input type="submit" (click)="calcular()">
+<p [ngClass] = "{positivo: rta > 0, negativo: rta < 0, zero: rta == 0 }">{{ rta }}</p>
+
+<!-- el ngIf o ng for modifica la estructura del DOM -->
+ <p *ngIf="rta > 0">El resultado es positivo</p>
+ <p [hidden]="rta < 0">El resultado es positivo</p>

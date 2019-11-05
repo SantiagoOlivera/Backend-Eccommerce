@@ -1,0 +1,15 @@
+.form-products{
+    /* border:1px solid blue; */
+    padding: 20px;
+    width: calc(100% - 200px);
+    float: left;
+}
+.products-list{
+    border: 1px solid black;
+    background-color: var(--menu);
+}
+.products-list-item{
+    margin: 5px;
+    
+    /* border: 1px solid black; */
+}

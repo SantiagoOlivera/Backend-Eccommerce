@@ -1,0 +1,17 @@
+.navigation-bar{
+    display: flex;
+}
+.navigation-bar-function{
+    width:40px;
+    height:40px;
+    /* border:1px solid black; */
+    padding:7px;
+}
+.navigation-bar-function i:hover{
+
+    border-radius:5px;
+    background-color: var(--menu-hover);
+    /* box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); */
+    /* border: 1px solid grey; */
+    
+}

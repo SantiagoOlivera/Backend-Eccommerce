@@ -1,0 +1,20 @@
+<!-- <p>menu works!</p> -->
+<div class="menu-button">
+        <i (click)="toggle()" class="material-icons">menu</i>
+</div>
+<!-- <div [hidden]="visible==false" class="menu" > -->
+<div [@openNav] = "state" class="menu">
+        <div  class="menu-items">     
+                <ul  class="navbar">
+                        <li routerLink="/home">Home</li>
+                        <li routerLink="/products">Products</li>
+                        <li routerLink="/categories">Categories</li>
+                        <li routerLink="/purchases">Purchases</li>
+                        <li routerLink="/users">Users</li>
+                        <li routerLink="/login">Login</li>
+                </ul>
+        </div>
+</div>
+<div class="spacer-top"></div>
+<div [@openNav] = "state" class="spacer-left"></div>
+

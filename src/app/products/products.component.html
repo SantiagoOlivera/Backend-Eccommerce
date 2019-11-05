@@ -1,0 +1,29 @@
+<p>products works!</p>
+<app-navigation-bar></app-navigation-bar>
+<div class="form-products">
+    <form action="POST">
+        <label for="">Denomination</label>
+        <input type="text">
+        <br>
+        <label for="">SKU</label>
+        <input type="text">
+        <br>
+        <label for="">Price</label>
+        <input type="text">
+        <br>
+        <label for="">Offer Price</label>
+        <input type="text">
+        <br>
+        <label for="">Description</label>
+        <input type="textarea">
+        <br>
+        <button (click)="getProducts()">Prueba</button>
+    </form>
+</div>
+<div  class="products-list">
+    <h1>Products</h1>
+    <div *ngFor="let products of data" class="product-list-item">
+            <h3>{{ products.name }}</h3>
+    </div>
+</div>
+

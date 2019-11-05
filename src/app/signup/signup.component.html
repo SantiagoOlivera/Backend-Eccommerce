@@ -1,0 +1,14 @@
+<p>signup works!</p>
+<form [formGroup]="signupForm" (ngSubmit)="signup()" class="login-form" >
+        <label for="">Name</label>
+        <input  formControlName="name" placeholder="Name" type="text">
+        <label for="">Lastname</label>
+        <input  formControlName="lastname" placeholder="Lastname" type="text">
+        <label for="">Email</label>
+        <input  formControlName="email" placeholder="Email" type="text">
+        <label for="">User</label>
+        <input  formControlName="user" placeholder="User Name" type="text">
+        <label  for="">password</label> 
+        <input  formControlName="password" placeholder="Password" type="password" >
+        <input type="submit">
+</form>

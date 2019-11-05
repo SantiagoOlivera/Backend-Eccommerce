@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --menu-hover:#43D1AF;
+    --menu:rgb(0, 253, 194) ;/* #43D1AF */
+}
