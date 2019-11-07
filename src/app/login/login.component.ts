@@ -1,6 +1,8 @@
 //creado mediante el comando ng generate component login
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  Validators} from '@angular/forms';
+import { UsersService } from '../services/users.service';
+import { Key } from 'protractor';
 /* import { AuthenticationService } from '../authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router'; */
@@ -14,7 +16,9 @@ import { Router } from '@angular/router'; */
 export class LoginComponent implements OnInit {
 
   constructor( 
-    private fb:FormBuilder) { 
+    private fb:FormBuilder,
+    public usersService: UsersService
+    ) { 
     
   }
 
@@ -27,7 +31,12 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-      console.log(this.loginForm.value);
+      //console.log(this.loginForm.value);
+      this.usersService.login(this.loginForm.value).subscribe(rta => {
+      //console.log(rta);
+      var data = rta['data'];
+      localStorage.setItem("access-token", data.token);
+      });
   }
 
 }

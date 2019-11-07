@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  Validators} from '@angular/forms';
 import { UsersService } from '../services/users.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -9,11 +10,14 @@ import { UsersService } from '../services/users.service';
 })
 export class SignupComponent implements OnInit {
 
+
   constructor(
     private fb:FormBuilder, 
     public usersService: UsersService
   ) { }
-
+ 
+  rta: String;
+  
   public signupForm = this.fb.group({
     name:[""],
     lastname:[""],
@@ -26,13 +30,17 @@ export class SignupComponent implements OnInit {
   }
 
   signup(){
-    console.log(this.signupForm.value);
+    //console.log(this.signupForm.value);    
+    this.usersService.signup(this.signupForm.value).subscribe(rta => {
+      console.log(rta);
+    },
+    error => {
+      console.log(error);
+    });
 
-    
-    //this.usersService.signup(data).subscribe(data => {
-      //console.log(data);
-      //this.data = data['data'];
-    //});
+  
+
+   
 
   }
 }
