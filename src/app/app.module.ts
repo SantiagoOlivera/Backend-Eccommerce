@@ -20,6 +20,9 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { ListRegisterComponent } from './list-register/list-register.component';
 import { SignupComponent } from './signup/signup.component';
 import { InterceptorService } from './services/interceptor.service';
+//Angular Materials
+import { MatSliderModule } from '@angular/material/slider';
+import {MatInputModule} from '@angular/material/input'; 
 
 @NgModule({
   declarations: [
@@ -44,8 +47,9 @@ import { InterceptorService } from './services/interceptor.service';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatSliderModule,
+    MatInputModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
