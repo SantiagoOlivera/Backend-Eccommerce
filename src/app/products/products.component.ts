@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -15,8 +16,14 @@ export class ProductsComponent implements OnInit {
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
-  constructor( public productsService: ProductsService) { 
-    this.getProducts();
+  constructor( public productsService: ProductsService, private router: Router) { 
+    //mandar consulta para saber si esta logueado el usuario
+    
+    //if(err.status === 401 ){
+      //this.router.navigateByUrl('/login');
+    //}else{
+      this.getProducts();
+    //}
   }
 
   getProducts(){

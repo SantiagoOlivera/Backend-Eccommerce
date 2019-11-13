@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ListRegisterComponent } from './list-register/list-register.component';
 import { SignupComponent } from './signup/signup.component';
+import { InterceptorService } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { SignupComponent } from './signup/signup.component';
     ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
