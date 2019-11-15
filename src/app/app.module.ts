@@ -21,8 +21,10 @@ import { ListRegisterComponent } from './list-register/list-register.component';
 import { SignupComponent } from './signup/signup.component';
 import { InterceptorService } from './services/interceptor.service';
 //Angular Materials
+import { MatSidenavModule } from '@angular/material/sidenav'; 
 import { MatSliderModule } from '@angular/material/slider';
-import {MatInputModule} from '@angular/material/input'; 
+import {MatInputModule} from '@angular/material/input';
+import { MainComponent } from './main/main.component'; 
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import {MatInputModule} from '@angular/material/input';
     HeaderComponent,
     NavigationBarComponent,
     ListRegisterComponent,
-    SignupComponent
+    SignupComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,8 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    //Angular Materials
+    MatSidenavModule,
     MatSliderModule,
     MatInputModule
   ],

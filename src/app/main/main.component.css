@@ -1,0 +1,39 @@
+.header{
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  height: 50px;
+  border: 1px solid black;
+  background-color: var(--menu);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.login-button{
+  float: right;
+  height: 65px;
+}
+.login-button i {
+  margin: 5px;
+  padding: 5px;
+  font-size: 45px;
+}
+.login-button i:hover{
+  background-color: var(--menu-hover);
+}
+
+.example-container {
+    z-index: 0;
+    width: 100%;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
