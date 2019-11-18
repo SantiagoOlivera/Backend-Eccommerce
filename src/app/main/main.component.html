@@ -1,25 +1,34 @@
 <!-- <p>main works!</p> -->
 <div class="header">
   <div class="menu-button">
-      <i (click)="toggle()" class="material-icons">menu</i>
+      <i (click)="drawer.toggle()" class="material-icons">menu</i>
   </div>
   <div class="login-button">
-      <i class="material-icons">person</i>
+      <i class="material-icons" mat-button [matMenuTriggerFor]="menu">person</i>
+      <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/login">Login</button>
+        <button mat-menu-item routerLink="/signup">Sign Up</button>
+      </mat-menu>
   </div>
 </div>
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <!-- <p>Auto-resizing sidenav</p>
+      <p *ngIf="openMenu">Lorem, ipsum dolor sit amet consectetur.</p>
       <button (click)="openMenu = !openMenu" mat-raised-button>
         Toggle extra text
-      </button>
+      </button> -->
+      <app-menu></app-menu>
     </mat-drawer>
   
     <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
+      <!-- <button type="button" mat-button (click)="drawer.toggle()">
         Toggle sidenav
-      </button>
+      </button> -->
+          
+          <router-outlet style="width:100%">
+          </router-outlet>
     </div>
 </mat-drawer-container>
 

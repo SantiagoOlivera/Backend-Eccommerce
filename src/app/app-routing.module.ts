@@ -18,9 +18,10 @@ const routes: Routes = [
    { path: "categories", component: CategoriesComponent },
    { path: "purchases",  component: PurchasesComponent  },
    { path: "login",      component: LoginComponent      },
-   { path: "signup",     component: SignupComponent     }
-
+   { path: "signup",     component: SignupComponent    }
 ];
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

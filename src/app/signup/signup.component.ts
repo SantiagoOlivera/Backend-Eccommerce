@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,  Validators} from '@angular/forms';
+import { FormBuilder, FormControl,  Validators} from '@angular/forms';
 import { UsersService } from '../services/users.service';
 import { LoginComponent } from '../login/login.component';
 
@@ -8,8 +8,24 @@ import { LoginComponent } from '../login/login.component';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
 
+export class SignupComponent implements OnInit {
+  nameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  lastnameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  usernameFormControl = new FormControl('', [
+    Validators.required
+  ]);
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  passwordFormControl = new FormControl('', [
+    Validators.required
+  ]);
 
   constructor(
     private fb:FormBuilder, 
@@ -38,9 +54,18 @@ export class SignupComponent implements OnInit {
       console.log(error);
     });
 
-  
-
-   
-
   }
+
 }
+
+/* @Component({
+  selector: 'input-errors-example',
+  templateUrl: 'input-errors-example.html',
+  styleUrls: ['input-errors-example.css'],
+})
+export class InputErrorsExample {
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+} */

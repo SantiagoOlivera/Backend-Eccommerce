@@ -22,9 +22,12 @@ import { SignupComponent } from './signup/signup.component';
 import { InterceptorService } from './services/interceptor.service';
 //Angular Materials
 import { MatSidenavModule } from '@angular/material/sidenav'; 
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatMenuModule} from '@angular/material/menu'; 
 import { MatSliderModule } from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import { MainComponent } from './main/main.component'; 
+
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { MainComponent } from './main/main.component';
     ReactiveFormsModule,
     //Angular Materials
     MatSidenavModule,
+    MatGridListModule,
+    MatMenuModule,
     MatSliderModule,
     MatInputModule
   ],
