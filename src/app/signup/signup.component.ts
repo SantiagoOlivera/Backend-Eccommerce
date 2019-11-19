@@ -6,7 +6,10 @@ import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  host:{
+    class: 'app-forms'
+  }
 })
 
 export class SignupComponent implements OnInit {
