@@ -26,7 +26,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatMenuModule} from '@angular/material/menu'; 
 import { MatSliderModule } from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
-import { MainComponent } from './main/main.component'; 
+import { MainComponent } from './main/main.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { MainComponent } from './main/main.component';
     MatGridListModule,
     MatMenuModule,
     MatSliderModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }
