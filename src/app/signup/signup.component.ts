@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl,  Validators} from '@angular/forms';
+import { FormBuilder, FormControl,  Validators, FormGroup, AbstractControl} from '@angular/forms';
 import { UsersService } from '../services/users.service';
 import { LoginComponent } from '../login/login.component';
+
+import { ValidatePassword } from '../_helpers/validate-password.validator';
+
+
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +17,10 @@ import { LoginComponent } from '../login/login.component';
 })
 
 export class SignupComponent implements OnInit {
-  nameFormControl = new FormControl('', [
+  
+  
+
+  /* nameFormControl = new FormControl('', [
     Validators.required
   ]);
   lastnameFormControl = new FormControl('', [
@@ -28,47 +35,43 @@ export class SignupComponent implements OnInit {
   ]);
   passwordFormControl = new FormControl('', [
     Validators.required
-  ]);
+  ]); */
+
+  signupForm: FormGroup;
 
   constructor(
     private fb:FormBuilder, 
     public usersService: UsersService
-  ) { }
+  ) {  }
  
   rta: String;
+
   
-  public signupForm = this.fb.group({
+
+  /* public signupForm = this.fb.group({
     name:[""],
     lastname:[""],
     email:[""],
     user:[""],
     password:[""]
-  })
+  }) */
 
   ngOnInit() {
-  }
 
-  signup(){
-    //console.log(this.signupForm.value);    
-    this.usersService.signup(this.signupForm.value).subscribe(rta => {
-      console.log(rta);
-    },
-    error => {
-      console.log(error);
+    this.signupForm = this.fb.group({
+      name: new FormControl('', Validators.required),
+      lastname: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      user: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', Validators.required),
+    },{
+      validator: ValidatePassword('password', 'confirmPassword')
     });
 
+    
   }
 
-}
 
-/* @Component({
-  selector: 'input-errors-example',
-  templateUrl: 'input-errors-example.html',
-  styleUrls: ['input-errors-example.css'],
-})
-export class InputErrorsExample {
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-} */
+  
+}
