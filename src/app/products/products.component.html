@@ -2,9 +2,43 @@
 <app-navigation-bar></app-navigation-bar>
 
 <div class="formProducts">
-    <button (click)="addProduct()">Add Product</button>
-    <div class="new-product">{{ newProducts }}</div>
 
+    <button (click)="addProduct()">Add Product</button>
+    <div class="new-products">
+      <mat-accordion *ngFor="let newItem of newProducts">
+        <mat-expansion-panel>
+          <!-- header -->
+          <mat-expansion-panel-header>
+            <mat-panel-title>New Product</mat-panel-title>
+            <mat-panel-description>Enter products data</mat-panel-description>
+          </mat-expansion-panel-header>
+          <!-- fields -->
+          <mat-form-field>
+            <input matInput placeholder="Title">
+          </mat-form-field>  
+          <mat-form-field>
+            <input matInput placeholder="SKU">
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+              <textarea matInput placeholder="Description"></textarea>
+          </mat-form-field>
+          <br>
+          <label>$</label>
+          <mat-form-field>
+              <input matInput placeholder="Price"/>
+          </mat-form-field>
+          <!-- <mat-form-field>
+              <input type="file" matInput >
+          </mat-form-field> -->
+          
+        </mat-expansion-panel>
+
+        
+      </mat-accordion>
+      
+    </div>
+    <!-- Products in MongoDB -->
     <div class="productItem" *ngFor="let products of data">
         <mat-accordion>
             <mat-expansion-panel>
