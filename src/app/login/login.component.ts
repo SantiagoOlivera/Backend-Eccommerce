@@ -1,6 +1,6 @@
 //creado mediante el comando ng generate component login
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,  Validators} from '@angular/forms';
+import { FormBuilder,  Validators, FormControl, FormGroup} from '@angular/forms';
 import { UsersService } from '../services/users.service';
 import { Key } from 'protractor';
 /* import { AuthenticationService } from '../authentication.service';
@@ -21,22 +21,25 @@ export class LoginComponent implements OnInit {
     ) { 
     
   }
-
-  public loginForm = this.fb.group({
-    userOrEmail:[""],
-    password:[""]
-  })
-
+  
+  loginForm: FormGroup;
+  
   ngOnInit() {
+    this.loginForm = this.fb.group({
+      userOrEmail: new FormControl('',Validators.required),
+      password: new FormControl('',Validators.required)
+    })
   }
 
   login(){
-      //console.log(this.loginForm.value);
+      console.log(this.loginForm.value);
       this.usersService.login(this.loginForm.value).subscribe(rta => {
       //console.log(rta);
       var data = rta['data'];
       localStorage.setItem("access-token", data.token);
       });
   }
+
+  
 
 }

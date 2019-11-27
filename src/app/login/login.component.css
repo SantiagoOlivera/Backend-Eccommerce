@@ -1,0 +1,20 @@
+button{
+  margin:5px;
+  background-color: var(--menu);
+}
+button:hover,button:focus{
+    background-color: var(--menu-hover);
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: white;
+  color: #666666;
+}
+.signupbutton{
+  border: 1px solid #999999;
+  background-color: white;
+}
+.signupbutton:hover{
+  background-color: #cccccc;
+}

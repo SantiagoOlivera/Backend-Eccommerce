@@ -28,6 +28,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatInputModule} from '@angular/material/input';
 import { MainComponent } from './main/main.component';
 import {MatButtonModule} from '@angular/material/button';
+import { MatExpansionModule} from '@angular/material/expansion'; 
+
 
 
 @NgModule({
@@ -61,7 +63,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatMenuModule,
     MatSliderModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

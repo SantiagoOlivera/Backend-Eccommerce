@@ -1,9 +1,22 @@
 <p>login works!</p>
-<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form" >
-        <label for="">user</label>
-        <input  formControlName="userOrEmail" placeholder="User" type="text">
-        <label  for="">password</label> 
-        <input  formControlName="password" placeholder="Password" type="password" >
-        <input type="submit">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+        <!-- userOrEmail -->
+        <mat-form-field class="example-full-width email-textbox">
+                <input matInput placeholder="User Or Email" formControlName="userOrEmail">
+                <mat-error *ngIf="loginForm.controls.userOrEmail.hasError('required')">
+                Email is <strong>required</strong>
+                </mat-error>
+        </mat-form-field>
+        <br>
+        <!-- password -->
+        <mat-form-field class="example-full-width">
+                        <input type="password" matInput placeholder="Password" formControlName="password" >
+                        <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                        Password is <strong>required</strong>
+                        </mat-error>
+        </mat-form-field>
+        <br>
+        
+        <button type="submit" mat-button [disabled]="!loginForm.valid">Sign Up</button>
+        <button class="signupbutton" mat-button routerLink="/signup">Sign Up</button>
 </form>
-
