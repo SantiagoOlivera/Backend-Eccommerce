@@ -10,7 +10,6 @@
 }
 .products-list-item{
     margin: 5px;
-    
     /* border: 1px solid black; */
 }
 
@@ -22,4 +21,8 @@
   
   .example-full-width {
     width: 100%;
+  }
+
+  .new-products mat-panel-title{
+        color: var(--new-product-title);
   }
