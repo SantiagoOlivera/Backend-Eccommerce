@@ -20,6 +20,8 @@ import { NavigationBarComponent } from './navigation-bar/navigation-bar.componen
 import { ListRegisterComponent } from './list-register/list-register.component';
 import { SignupComponent } from './signup/signup.component';
 import { InterceptorService } from './services/interceptor.service';
+/* input solo numeros */
+import { TwoDigitDecimalNumberDirective } from './two-digit-decimal-number.directive';
 //Angular Materials
 import { MatSidenavModule } from '@angular/material/sidenav'; 
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -48,7 +50,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
     NavigationBarComponent,
     ListRegisterComponent,
     SignupComponent,
-    MainComponent
+    MainComponent,
+    TwoDigitDecimalNumberDirective
   ],
   imports: [
     BrowserModule,

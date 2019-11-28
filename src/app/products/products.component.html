@@ -4,6 +4,8 @@
 <div class="formProducts">
 
     <button (click)="addProduct()">Add Product</button>
+    <button>Buscar</button>
+    <button>Save</button>
     <div class="new-products">
       <mat-accordion *ngFor="let newItem of newProducts">
         <mat-expansion-panel>
@@ -26,7 +28,7 @@
           <br>
           <label>$</label>
           <mat-form-field>
-              <input matInput placeholder="Price"/>
+              <input  matInput placeholder="Price" appTwoDigitDecimalNumber/>
           </mat-form-field>
           <!-- <mat-form-field>
               <input type="file" matInput >
@@ -58,7 +60,6 @@
 </div>
 
    
-          
 <!-- </div>
 <div  class="products-list">
     <h1>Products</h1>

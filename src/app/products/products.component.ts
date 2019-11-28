@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Router } from '@angular/router';
-import { MatFileUploadModule } from 'angular-material-fileupload';
+/* import { MatFileUploadModule } from 'angular-material-fileupload'; */
 
 @Component({
   selector: 'app-products',
