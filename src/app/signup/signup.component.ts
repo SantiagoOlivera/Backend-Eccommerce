@@ -11,6 +11,7 @@ import { ValidatePassword } from '../_helpers/validate-password.validator';
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
+  //add class to main class of the component
   host:{
     class: 'app-forms'
   }
@@ -18,44 +19,14 @@ import { ValidatePassword } from '../_helpers/validate-password.validator';
 
 export class SignupComponent implements OnInit {
   
-  
-
-  /* nameFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  lastnameFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  usernameFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required
-  ]); */
-
   signupForm: FormGroup;
+  rta: String;
 
   constructor(
     private fb:FormBuilder, 
     public usersService: UsersService
   ) {  }
  
-  rta: String;
-
-  
-
-  /* public signupForm = this.fb.group({
-    name:[""],
-    lastname:[""],
-    email:[""],
-    user:[""],
-    password:[""]
-  }) */
-
   ngOnInit() {
 
     this.signupForm = this.fb.group({
@@ -72,6 +43,16 @@ export class SignupComponent implements OnInit {
     
   }
 
+  signup(){
+    console.log(this.signupForm.value);
+    //console.log(this.signupForm.value);    
+    this.usersService.signup(this.signupForm.value).subscribe(rta => {
+      console.log(rta);
+    },
+    error => {
+      console.log(error);
+    });
 
+  }
   
 }

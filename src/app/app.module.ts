@@ -33,6 +33,9 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatExpansionModule} from '@angular/material/expansion'; 
 
 
+import { MatFileUploadModule } from 'angular-material-fileupload';
+
+
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import { MatExpansionModule} from '@angular/material/expansion';
     MatSliderModule,
     MatInputModule,
     MatButtonModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFileUploadModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

@@ -14,7 +14,7 @@
 </form> -->
 
 
-<form class="example-form" [formGroup]="signupForm">
+<form class="example-form" [formGroup]="signupForm" (ngSubmit)="signup()">
         
         <!-- name -->
         <mat-form-field class="example-full-width">

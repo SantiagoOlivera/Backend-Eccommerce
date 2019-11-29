@@ -8,14 +8,16 @@ import { Router } from '@angular/router';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
   providers: [ ProductsService ],
-  
+  host:{
+    class: 'app-forms'
+  }
 
 })
 /* @NgModule({
   imports: [MatExpansionModule]
 }) */
 export class ProductsComponent implements OnInit {
-  
+  fileUploadInputFor;
   productForm;
   data = [];
   newProducts: Array<Number> = [];/* Array<MatExpansionModule> = []; */
