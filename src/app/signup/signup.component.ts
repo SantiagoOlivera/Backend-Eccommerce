@@ -23,18 +23,18 @@ export class SignupComponent implements OnInit {
   rta: String;
 
   constructor(
-    private fb:FormBuilder, 
+    private fb: FormBuilder, 
     public usersService: UsersService
   ) {  }
  
   ngOnInit() {
 
     this.signupForm = this.fb.group({
-      name: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      user: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      name:            new FormControl('', Validators.required),
+      lastname:        new FormControl('', Validators.required),
+      email:           new FormControl('', [Validators.required, Validators.email]),
+      user:            new FormControl('', Validators.required),
+      password:        new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required),
     },{
       validator: ValidatePassword('password', 'confirmPassword')

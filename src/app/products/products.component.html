@@ -8,39 +8,44 @@
     <button>Save</button>
     <div class="new-products">
       <mat-accordion *ngFor="let newItem of newProducts">
-        <mat-expansion-panel>
-          <!-- header -->
-          <mat-expansion-panel-header>
-            <mat-panel-title>New Product</mat-panel-title>
-            <mat-panel-description>Enter products data</mat-panel-description>
-          </mat-expansion-panel-header>
-          <!-- fields -->
-          <mat-form-field>
-            <input matInput placeholder="Title">
-          </mat-form-field> 
-          <mat-form-field>
-            <input matInput placeholder="SKU">
-          </mat-form-field>
-          <br>
-         
-            <input  type="file"/>
-          <br>
-          <mat-form-field>
-              <textarea matInput placeholder="Description"></textarea>
-          </mat-form-field>
-          <br>
-          <label>$</label>
-          <mat-form-field>
-              <input  matInput placeholder="Price" appTwoDigitDecimalNumber/>
-          </mat-form-field>
-          <!-- <mat-form-field>
-              <input type="file" matInput >
-          </mat-form-field> -->
-          
-        </mat-expansion-panel>
+              <form  [formGroup]="productForm" (ngSubmit)="saveProduct()">
+              <mat-expansion-panel>
+                <!-- header -->
+                <mat-expansion-panel-header>
+                  <mat-panel-title>New Product</mat-panel-title>
+                  <mat-panel-description>Enter products data</mat-panel-description>
+                </mat-expansion-panel-header>
+                <!-- fields -->
+                <mat-form-field>
+                  <input matInput placeholder="Title" formControlName="title">
+                </mat-form-field> 
+                <mat-form-field>
+                  <input matInput placeholder="SKU" formControlName="sku">
+                </mat-form-field>
+                <br>
+                  <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                  <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+                <br>
+                <br>
+                <mat-form-field>
+                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                </mat-form-field>
+                <br>
+                <label>$</label>
+                <mat-form-field>
+                    <input  matInput placeholder="Price" appTwoDigitDecimalNumber/>
+                </mat-form-field>
+                <!-- <mat-form-field>
+                    <input type="file" matInput >
+                </mat-form-field> -->
+                <button type="submit" mat-button >Save Product</button>
+              </mat-expansion-panel>
 
-        
-      </mat-accordion>
+            </form>
+             
+            </mat-accordion>
+      
+      
       
     </div>
     <!-- Products in MongoDB -->
