@@ -32,8 +32,9 @@ import { MainComponent } from './main/main.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatExpansionModule} from '@angular/material/expansion'; 
 
-
 import { MatFileUploadModule } from 'angular-material-fileupload';
+
+import { FileSelectDirective } from 'ng2-file-upload';
 
 
 
@@ -54,7 +55,8 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     ListRegisterComponent,
     SignupComponent,
     MainComponent,
-    TwoDigitDecimalNumberDirective
+    TwoDigitDecimalNumberDirective,
+
   ],
   imports: [
     BrowserModule,

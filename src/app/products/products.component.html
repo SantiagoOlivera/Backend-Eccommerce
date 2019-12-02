@@ -7,43 +7,50 @@
     <button>Buscar</button>
     <button>Save</button>
     <div class="new-products">
-      <mat-accordion *ngFor="let newItem of newProducts">
-              <form  [formGroup]="productForm" (ngSubmit)="saveProduct()">
-              <mat-expansion-panel>
-                <!-- header -->
-                <mat-expansion-panel-header>
-                  <mat-panel-title>New Product</mat-panel-title>
-                  <mat-panel-description>Enter products data</mat-panel-description>
-                </mat-expansion-panel-header>
-                <!-- fields -->
-                <mat-form-field>
-                  <input matInput placeholder="Title" formControlName="title">
-                </mat-form-field> 
-                <mat-form-field>
-                  <input matInput placeholder="SKU" formControlName="sku">
-                </mat-form-field>
-                <br>
-                  <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                  <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
-                <br>
-                <br>
-                <mat-form-field>
-                    <textarea matInput placeholder="Description" formControlName="description"></textarea>
-                </mat-form-field>
-                <br>
-                <label>$</label>
-                <mat-form-field>
-                    <input  matInput placeholder="Price" appTwoDigitDecimalNumber/>
-                </mat-form-field>
-                <!-- <mat-form-field>
-                    <input type="file" matInput >
-                </mat-form-field> -->
-                <button type="submit" mat-button >Save Product</button>
-              </mat-expansion-panel>
+      <!-- Formulario de Productos general -->
+        <form [formGroup] = "productForm" >
+              <div 
+              formArrayName = "productFormItems"
+              *ngFor = "let newItem of productForm.get('productFormItems').controls; let i = index">
 
-            </form>
-             
-            </mat-accordion>
+              <div [formGroupName]="i" >
+                  <mat-expansion-panel>
+                      <!-- header -->
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>New Product</mat-panel-title>
+                        <mat-panel-description>Add product data</mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <!-- fields -->
+                      <mat-form-field>
+                        <input matInput placeholder="Title" formControlName="title">
+                      </mat-form-field> 
+                      <mat-form-field>
+                        <input matInput placeholder="SKU" formControlName="sku">
+                      </mat-form-field>
+                      <br>
+                        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                        <input hidden (change)="onFileSelected($event, i)" #fileInput type="file" id="file" accept=".png, .jpg, .jpeg" >
+                      <br>
+                      <br>
+                      <mat-form-field>
+                          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                      </mat-form-field>
+                      <br>
+                      <label>$</label>
+                      <mat-form-field>
+                          <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
+                      </mat-form-field>
+                      <!-- <mat-form-field>
+                          <input type="file" matInput >
+                      </mat-form-field> -->
+                      <button type="submit" mat-button (click)="saveProduct(i)">Save Product</button>
+                    </mat-expansion-panel>
+              </div>
+
+          </div>
+
+        </form>
+      
       
       
       
