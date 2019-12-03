@@ -20,15 +20,13 @@ import { HttpClient } from '@angular/common/http';
 }) */
 export class ProductsComponent implements OnInit {
   
-  
+  data = [];
   productForm: FormGroup;
   productFormItems: FormArray;
-  data = [];
-  newProducts: Array<Number> = [];/* Array<MatExpansionModule> = []; */
-  
-  
-  
-  
+  newProducts: Array<Number> = [];
+
+  formNewProductsHTML: String = "";
+
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
   constructor( private  productsService: ProductsService, 
@@ -39,23 +37,21 @@ export class ProductsComponent implements OnInit {
       //this.getProducts();
   }
 
+  //ngInit se ejecuta cuando termina la carga del componente
+  ngOnInit() {
+    this.productForm  =  this.fb.group({});
+    /* this.productForm  =  this.fb.group({
+        productFormItems:  this.fb.array([ this.createProductFormItem() ])
+    }); */
+  }
+
   getProducts(){
     this.productsService.getProducts().subscribe(data => {
       console.log(data);
       this.data = data['data'];
     });
   }
-
-  //ngInit se ejecuta cuando termina la carga del componente
-  ngOnInit() {
-    this.productForm  =  this.fb.group({
-      productFormItems:  this.fb.array([ this.createProductFormItem() ])
-    });
-    console.log(this.productForm.controls.productFormItems.controls.length);
-  }
-
   
-
   createProductFormItem(): FormGroup {
     return this.fb.group({
       title:       new FormControl('', Validators.required),
@@ -67,9 +63,21 @@ export class ProductsComponent implements OnInit {
   }
 
   addProduct(): void {
-    this.productFormItems = this.productForm.get('productFormItems') as FormArray;
-    this.productFormItems.push(this.createProductFormItem());
-    /* console.log(this.productForm); */
+    //verificar si tiene controles el asociados 
+    if(!Object.keys(this.productForm.controls).length){
+      //add first control new product form
+      this.productForm.addControl('productFormItems', this.fb.array([ this.createProductFormItem() ]) );
+    }else{
+      //console.log(this.productForm.controls);
+      //console.log(this.productForm.controls.productFormItems.controls.length);
+      this.productFormItems = this.productForm.get('productFormItems') as FormArray;
+      this.productFormItems.push(this.createProductFormItem());
+    }  
+  }
+
+  createNewProductsHTML(){
+    this.formNewProductsHTML = "";
+
   }
 
   saveProduct(i){
