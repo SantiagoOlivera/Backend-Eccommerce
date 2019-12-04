@@ -14,6 +14,8 @@ import { Router } from '@angular/router'; */
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  
+  loginForm: FormGroup;
 
   constructor( 
     private fb:FormBuilder,
@@ -21,8 +23,6 @@ export class LoginComponent implements OnInit {
     ) { 
     
   }
-  
-  loginForm: FormGroup;
   
   ngOnInit() {
     this.loginForm = this.fb.group({

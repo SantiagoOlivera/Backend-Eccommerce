@@ -7,6 +7,7 @@
     --menu-hover:#43D1AF;
     --menu:rgb(0, 253, 194) ;/* #43D1AF */
     --new-product-title: rgb(50,205,50);
+    --delete-product-button: grey;
 }
 .app-forms{
     width: 100%;

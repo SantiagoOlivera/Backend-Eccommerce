@@ -32,4 +32,11 @@ export class ProductsService implements HttpInterceptor {
     
     );
   }
+
+  addProduct(data: JSON){
+    let productsHeaders = new HttpHeaders();
+    productsHeaders.append('Access-Control-Allow-Origin' , 'http://localhost:3000');
+    return this.http.post('http://localhost:3000/products/add', data , { headers: productsHeaders });
+  }
+
 }

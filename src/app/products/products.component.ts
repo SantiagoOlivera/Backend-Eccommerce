@@ -73,14 +73,29 @@ export class ProductsComponent implements OnInit {
   saveProduct(i){
     console.log(i);
     console.log(this.productForm.value.productFormItems[i]);
+    this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
+    //console.log(rta);
+    var data = rta['data'];
+    var message = rta['message'];
+    console.log(data);
+    });
+
+  }
+
+  deleteProduct(i){
+    if(this.productForm.get('productFormItems').controls.length === 1){
+      this.productForm.removeControl('productFormItems');
+    }else{
+      this.productForm.get('productFormItems').removeAt(i);
+    }
   }
   
 
   onFileSelected(event, productForm: Number) {
-    console.log(this.productFormItems);
+    /* console.log(this.productFormItems);
     console.log(event);
     
-    var selectedFile = <File>event.target.files[0]; */
+    var selectedFile = <File>event.target.files[0]; 
     
    const inputNode: any = document.querySelector('#file');
   
@@ -92,7 +107,7 @@ export class ProductsComponent implements OnInit {
       };
   
       reader.readAsArrayBuffer(inputNode.files[0]);
-    } 
+    }  */
  }
 
   /* uploadFile(){
