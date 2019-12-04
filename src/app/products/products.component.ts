@@ -25,8 +25,6 @@ export class ProductsComponent implements OnInit {
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
 
-  formNewProductsHTML: String = "";
-
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
   constructor( private  productsService: ProductsService, 
@@ -40,9 +38,6 @@ export class ProductsComponent implements OnInit {
   //ngInit se ejecuta cuando termina la carga del componente
   ngOnInit() {
     this.productForm  =  this.fb.group({});
-    /* this.productForm  =  this.fb.group({
-        productFormItems:  this.fb.array([ this.createProductFormItem() ])
-    }); */
   }
 
   getProducts(){
@@ -51,7 +46,7 @@ export class ProductsComponent implements OnInit {
       this.data = data['data'];
     });
   }
-  
+
   createProductFormItem(): FormGroup {
     return this.fb.group({
       title:       new FormControl('', Validators.required),
@@ -74,32 +69,20 @@ export class ProductsComponent implements OnInit {
       this.productFormItems.push(this.createProductFormItem());
     }  
   }
-
-  createNewProductsHTML(){
-    this.formNewProductsHTML = "";
-
-  }
-
+  
   saveProduct(i){
     console.log(i);
     console.log(this.productForm.value.productFormItems[i]);
   }
-  //addProduct(){
+  
 
-    //console.log(this.newProducts);
-    //this.newProducts.push(new Number());
-    //console.log(this.newProducts);
-    
-    /* this.newProducts = this.newProducts + '<mat-accordion><mat-expansion-panel><mat-expansion-panel-header><mat-panel-title>{{ products.name }}</mat-panel-title><mat-panel-description>Type your name and age</mat-panel-description></mat-expansion-panel-header><mat-form-field><input matInput placeholder="First name"></mat-form-field><mat-form-field><input matInput placeholder="Age"></mat-form-field></mat-expansion-panel></mat-accordion>'; */
-  //}
-
-  /* onFileSelected(event, productForm: Number) {
+  onFileSelected(event, productForm: Number) {
     console.log(this.productFormItems);
     console.log(event);
     
     var selectedFile = <File>event.target.files[0]; */
     
-    /* const inputNode: any = document.querySelector('#file');
+   const inputNode: any = document.querySelector('#file');
   
     if (typeof (FileReader) !== 'undefined') {
       const reader = new FileReader();
@@ -109,8 +92,8 @@ export class ProductsComponent implements OnInit {
       };
   
       reader.readAsArrayBuffer(inputNode.files[0]);
-    } */
- // }
+    } 
+ }
 
   /* uploadFile(){
     const fd = new FormData();
