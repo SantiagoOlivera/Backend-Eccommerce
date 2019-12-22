@@ -30,8 +30,11 @@
                         <input matInput placeholder="SKU" formControlName="sku">
                       </mat-form-field>
                       <br>
-                        <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                        <input hidden (change)="onFileSelected($event, i)" #fileInput type="file" id="file" accept=".png, .jpg, .jpeg" >
+                      <input  (click) = "onFileSelected()" #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" >
+                        <button type="button" mat-raised-button 
+                          (click)="uploader.uploadAll()"
+                          [disabled] = "!uploader.getNotUploadedItems().length"
+                          >Choose File</button>
                       <br>
                       <br>
                       <mat-form-field>

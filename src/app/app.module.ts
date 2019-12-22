@@ -33,9 +33,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatExpansionModule} from '@angular/material/expansion'; 
 
 import { MatFileUploadModule } from 'angular-material-fileupload';
-
+//file upload
 import { FileSelectDirective } from 'ng2-file-upload';
-
 
 
 @NgModule({
@@ -56,6 +55,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
     SignupComponent,
     MainComponent,
     TwoDigitDecimalNumberDirective,
+    FileSelectDirective
 
   ],
   imports: [

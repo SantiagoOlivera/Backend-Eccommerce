@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 /* import { MatFileUploadModule } from 'angular-material-fileupload'; */
+import { FileUploader } from 'ng2-file-upload';
+
 
 @Component({
   selector: 'app-products',
@@ -18,8 +20,12 @@ import { HttpClient } from '@angular/common/http';
 /* @NgModule({
   imports: [MatExpansionModule]
 }) */
+
 export class ProductsComponent implements OnInit {
-  
+  public  URL = 'http://localhost:3000/fileupload/add';
+
+  public uploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'image'});
+
   data = [];
   productForm: FormGroup;
   productFormItems: FormArray;
@@ -38,6 +44,11 @@ export class ProductsComponent implements OnInit {
   //ngInit se ejecuta cuando termina la carga del componente
   ngOnInit() {
     this.productForm  =  this.fb.group({});
+    //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
+    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    //overide the onCompleteItem property of the uploader so we are 
+    //able to deal with the server response.
+    
   }
 
   getProducts(){
@@ -52,8 +63,7 @@ export class ProductsComponent implements OnInit {
       title:       new FormControl('', Validators.required),
       sku:         new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      price:       new FormControl('', Validators.required),
-      image:[""],
+      price:       new FormControl('', Validators.required)
     });
   }
 
@@ -72,21 +82,26 @@ export class ProductsComponent implements OnInit {
   
   saveProduct(i){
     console.log(i);
-    console.log(this.productForm.value.productFormItems[i]);
-    this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
-    //console.log(rta);
-    var data = rta['data'];
-    var message = rta['message'];
-    console.log(data);
-    });
+    this.uploader.uploadAll();
+    this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+      console.log("ImageUpload:uploaded:", item, status, response);
+      console.log(this.productForm.value.productFormItems[i]);
+      this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
+      //console.log(rta);
+      var data = rta['data'];
+      var message = rta['message'];
+      console.log(data);
+      });
+    };
+    
 
   }
 
   deleteProduct(i){
-    if(this.productForm.get('productFormItems').controls.length === 1){
+    if((this.productForm as any).get('productFormItems').controls.length === 1){
       this.productForm.removeControl('productFormItems');
     }else{
-      this.productForm.get('productFormItems').removeAt(i);
+      (this.productForm as any).get('productFormItems').removeAt(i);
     }
   }
   
@@ -108,6 +123,7 @@ export class ProductsComponent implements OnInit {
   
       reader.readAsArrayBuffer(inputNode.files[0]);
     }  */
+    
  }
 
   /* uploadFile(){
