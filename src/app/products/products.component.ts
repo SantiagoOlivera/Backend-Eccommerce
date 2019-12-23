@@ -23,13 +23,13 @@ import { FileUploader } from 'ng2-file-upload';
 
 export class ProductsComponent implements OnInit {
   public  URL = 'http://localhost:3000/fileupload/add';
-
   public uploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'image'});
 
   data = [];
   productForm: FormGroup;
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
+  
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
@@ -83,18 +83,24 @@ export class ProductsComponent implements OnInit {
   saveProduct(i){
     console.log(i);
     this.uploader.uploadAll();
+    
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
+      var image = JSON.parse(response);
       console.log(this.productForm.value.productFormItems[i]);
+      //add image name to product data
+      this.productForm.value.productFormItems[i].image = image.data.filename;
+      
       this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
-      //console.log(rta);
-      var data = rta['data'];
-      var message = rta['message'];
-      console.log(data);
+        //console.log(rta);
+        var data = rta['data'];
+        var message = rta['message'];
+        //console.log(data);
+        console.log(rta);
+        //console.log(data);
       });
-    };
-    
-
+    }
+      
   }
 
   deleteProduct(i){
