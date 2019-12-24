@@ -23,12 +23,14 @@ import { FileUploader } from 'ng2-file-upload';
 
 export class ProductsComponent implements OnInit {
   public  URL = 'http://localhost:3000/fileupload/add';
-  public uploader:FileUploader = new FileUploader({url: this.URL, itemAlias: 'image'});
+  public uploader: FileUploader = new FileUploader({url: this.URL, itemAlias: 'image'});
 
   data = [];
   productForm: FormGroup;
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
+  //productImages: Array<Number> = [];
+  productImages: FormArray;
   
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
@@ -45,7 +47,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.productForm  =  this.fb.group({});
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-    this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     //overide the onCompleteItem property of the uploader so we are 
     //able to deal with the server response.
     
@@ -111,26 +113,9 @@ export class ProductsComponent implements OnInit {
     }
   }
   
-
-  onFileSelected(event, productForm: Number) {
-    /* console.log(this.productFormItems);
-    console.log(event);
-    
-    var selectedFile = <File>event.target.files[0]; 
-    
-   const inputNode: any = document.querySelector('#file');
-  
-    if (typeof (FileReader) !== 'undefined') {
-      const reader = new FileReader();
-  
-      reader.onload = (e: any) => {
-        this.srcResult = e.target.result;
-      };
-  
-      reader.readAsArrayBuffer(inputNode.files[0]);
-    }  */
-    
- }
+  addImage(){
+    this.productImages.push(1);
+  }
 
   /* uploadFile(){
     const fd = new FormData();
