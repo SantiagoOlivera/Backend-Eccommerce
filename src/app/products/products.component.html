@@ -12,7 +12,10 @@
         <div 
           formArrayName = "productFormItems"
           *ngFor = "let newItem of productForm.get('productFormItems')?.controls; let i = index">
-              <div [formGroupName]="i" >
+              <div 
+                [formGroupName]="i" 
+                class="new_product_{{i}}" 
+              >
                   <mat-expansion-panel>
                       <!-- header -->
                       <mat-expansion-panel-header>
@@ -30,13 +33,14 @@
                         <input matInput placeholder="SKU" formControlName="sku">
                       </mat-form-field>
                       <br>
-                      <!-- <div class="product-images" *ngFor="let cantImages of productImages"> -->
-                        <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" >
-                        <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" >
-                      <!-- </div> -->
-                      <!-- <button mat-raised-button (click)="addImage()">
+                      <div class="product-images" *ngFor="let images of productForm.get('productFormItems').controls?.images , let images = index">
+                        <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
+                        <input type="file" (change)="onFileChanged($event)">
+                        <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
+                      </div>
+                      <button mat-raised-button (click)="addImage()">
                         <i class="material-icons">add</i>
-                      </button> -->
+                      </button>
                         <!-- <button type="button" mat-raised-button 
                           (click)="uploader.uploadAll()"
                           [disabled] = "!uploader.getNotUploadedItems().length"

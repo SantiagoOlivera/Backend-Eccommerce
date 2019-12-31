@@ -29,8 +29,7 @@ export class ProductsComponent implements OnInit {
   productForm: FormGroup;
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
-  //productImages: Array<Number> = [];
-  productImages: FormArray;
+  /* productImages: Array<File> = []; */
   
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
@@ -65,7 +64,8 @@ export class ProductsComponent implements OnInit {
       title:       new FormControl('', Validators.required),
       sku:         new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      price:       new FormControl('', Validators.required)
+      price:       new FormControl('', Validators.required),
+      images: new Array(new File([""], "image")),
     });
   }
 
@@ -84,7 +84,11 @@ export class ProductsComponent implements OnInit {
   
   saveProduct(i){
     console.log(i);
-    this.uploader.uploadAll();
+
+    var inputImages = document.querySelector('.new_product_' + i + ' input' );
+    console.log(inputImages);
+
+    /* this.uploader.uploadAll();
     
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
@@ -100,8 +104,8 @@ export class ProductsComponent implements OnInit {
         //console.log(data);
         console.log(rta);
         //console.log(data);
-      });
-    }
+      }); 
+    }*/
       
   }
 
@@ -113,8 +117,14 @@ export class ProductsComponent implements OnInit {
     }
   }
   
-  addImage(){
-    this.productImages.push(1);
+  addImage(i){
+    (this.productForm as any).get('productFormItems')
+      .controls[0].controls.images.push(1);
+
+/* 
+          new File([""], 
+              "image_" + (this.productForm as any).get('productFormItems').controls.get('images').length) );
+    console.log((this.productForm as any).get('productFormItems').controls.get('images') */
   }
 
   /* uploadFile(){
@@ -122,7 +132,9 @@ export class ProductsComponent implements OnInit {
     fd.append('image');
     this.http.post('http://localhost:4200/');
   } */
-
+  onFileChanged(event){
+    console.log(event);
+  }
   
   
 }
