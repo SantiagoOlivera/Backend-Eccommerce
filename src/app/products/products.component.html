@@ -33,12 +33,15 @@
                         <input matInput placeholder="SKU" formControlName="sku">
                       </mat-form-field>
                       <br>
-                      <div class="product-images" *ngFor="let images of productForm.get('productFormItems').controls?.images , let images = index">
+                      <div class="product-images" *ngFor = "let image of productForm.get('productFormItems')?.controls[i].controls.images.controls; let image = index" >
                         <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
                         <input type="file" (change)="onFileChanged($event)">
+                        <div class="remove-image" (click)="deleteImage(i,image)">
+                          <i class="material-icons">remove</i>
+                        </div>
                         <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
                       </div>
-                      <button mat-raised-button (click)="addImage()">
+                      <button mat-raised-button (click)="addImage(i)">
                         <i class="material-icons">add</i>
                       </button>
                         <!-- <button type="button" mat-raised-button 
@@ -97,6 +100,4 @@
 
 <!-- <label >Upload file</label>
 <input id="singleFile" type="file" /> -->
-
-
 

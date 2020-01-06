@@ -5,6 +5,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@ang
 import { HttpClient } from '@angular/common/http';
 /* import { MatFileUploadModule } from 'angular-material-fileupload'; */
 import { FileUploader } from 'ng2-file-upload';
+import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ProductsComponent implements OnInit {
   productForm: FormGroup;
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
-  /* productImages: Array<File> = []; */
+  
+
   
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
@@ -65,7 +67,7 @@ export class ProductsComponent implements OnInit {
       sku:         new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       price:       new FormControl('', Validators.required),
-      images: new Array(new File([""], "image")),
+      images:      new FormArray([]),
     });
   }
 
@@ -82,12 +84,15 @@ export class ProductsComponent implements OnInit {
     }  
   }
   
-  saveProduct(i){
+
+
+  async saveProduct(i){
     console.log(i);
-
-    var inputImages = document.querySelector('.new_product_' + i + ' input' );
-    console.log(inputImages);
-
+    this.deleteNullImages(i);
+    var images = this.getProductImages(i);
+    console.log(images);
+     
+      
     /* this.uploader.uploadAll();
     
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
@@ -107,7 +112,8 @@ export class ProductsComponent implements OnInit {
       }); 
     }*/
       
-  }
+  
+}
 
   deleteProduct(i){
     if((this.productForm as any).get('productFormItems').controls.length === 1){
@@ -116,17 +122,50 @@ export class ProductsComponent implements OnInit {
       (this.productForm as any).get('productFormItems').removeAt(i);
     }
   }
-  
-  addImage(i){
-    (this.productForm as any).get('productFormItems')
-      .controls[0].controls.images.push(1);
 
-/* 
-          new File([""], 
-              "image_" + (this.productForm as any).get('productFormItems').controls.get('images').length) );
-    console.log((this.productForm as any).get('productFormItems').controls.get('images') */
+  addImage(i){
+      console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
+      (this.productForm as any).get('productFormItems').controls[i].controls.images.push(
+        new FormControl(),
+      );
+    //console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
   }
 
+  deleteImage(i , image){
+    (this.productForm as any).get('productFormItems').controls[i].controls.images.removeAt(image);
+    //console.log(document.querySelectorAll('.new_product_' + i + ' input[type="file"]' ));
+    //return document.querySelectorAll('.new_product_' + i + ' input[type="file"]' );
+  }
+
+  deleteNullImages(i){
+    
+    var inputImages =  this.getProductImages(i);
+    //verify null images
+    var removeNullInputs = [];
+
+    for(var x=0; x<inputImages.length; x++){
+
+      console.log(inputImages[x]);
+      console.log((inputImages[x] as any).value) ;
+    
+      if((inputImages[x] as any).value === ""){
+            removeNullInputs.push(x);
+            inputImages[x].remove();
+       }
+    }
+    //remove form controlers
+    console.log(removeNullInputs);
+    var cont = 0;
+    removeNullInputs.forEach(element => {
+      //console.log(element);
+      this.deleteImage(i, element-cont);
+      cont++;
+    });
+  }
+
+  getProductImages(i){
+    return document.querySelectorAll('.new_product_' + i + ' input[type="file"]' );
+  }
   /* uploadFile(){
     const fd = new FormData();
     fd.append('image');
