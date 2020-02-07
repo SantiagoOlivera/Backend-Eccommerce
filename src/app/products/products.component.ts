@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
   productForm: FormGroup;
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
-  
+  uploaders: Array<FileUploader> = []
 
   
 
@@ -69,6 +69,7 @@ export class ProductsComponent implements OnInit {
       price:       new FormControl('', Validators.required),
       images:      new FormArray([]),
     });
+    
   }
 
   addProduct(): void {
@@ -81,18 +82,25 @@ export class ProductsComponent implements OnInit {
       //console.log(this.productForm.controls.productFormItems.controls.length);
       this.productFormItems = this.productForm.get('productFormItems') as FormArray;
       this.productFormItems.push(this.createProductFormItem());
-    }  
+    }
+    this.uploaders.push( new FileUploader({url: this.URL, itemAlias: 'image'}));
+    
   }
   
 
 
   async saveProduct(i){
-    console.log(i);
+    /* console.log(i);
     this.deleteNullImages(i);
     var images = this.getProductImages(i);
-    console.log(images);
-     
-      
+    console.log(images); */
+    console.log(this.uploader);
+    console.log(this.uploaders);
+    this.uploaders[i].uploadAll();
+    this.uploaders[i].onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploaders[i].onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+      console.log("ImageUpload:uploaded:", item, status, response);
+    }
     /* this.uploader.uploadAll();
     
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
