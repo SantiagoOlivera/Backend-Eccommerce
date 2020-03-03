@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 /* import { MatFileUploadModule } from 'angular-material-fileupload'; */
 import { FileUploader } from 'ng2-file-upload';
 import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 @Component({
@@ -32,8 +33,6 @@ export class ProductsComponent implements OnInit {
   newProducts: Array<Number> = [];
   uploaders: Array<FileUploader> = []
 
-  
-
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
   constructor( private  productsService: ProductsService, 
@@ -43,7 +42,7 @@ export class ProductsComponent implements OnInit {
   ) { 
       //this.getProducts();
   }
-
+  
   //ngInit se ejecuta cuando termina la carga del componente
   ngOnInit() {
     this.productForm  =  this.fb.group({});
@@ -87,8 +86,6 @@ export class ProductsComponent implements OnInit {
     
   }
   
-
-
   async saveProduct(i){
     /* console.log(i);
     this.deleteNullImages(i);
@@ -130,7 +127,6 @@ export class ProductsComponent implements OnInit {
       (this.productForm as any).get('productFormItems').removeAt(i);
     }
   }
-
   addImage(i){
       console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
       (this.productForm as any).get('productFormItems').controls[i].controls.images.push(
@@ -138,13 +134,11 @@ export class ProductsComponent implements OnInit {
       );
     //console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
   }
-
-  deleteImage(i , image){
-    (this.productForm as any).get('productFormItems').controls[i].controls.images.removeAt(image);
+  deleteImage(i , y){
+    (this.productForm as any).get('productFormItems').controls[i].controls.images.removeAt(y);
     //console.log(document.querySelectorAll('.new_product_' + i + ' input[type="file"]' ));
     //return document.querySelectorAll('.new_product_' + i + ' input[type="file"]' );
   }
-
   deleteNullImages(i){
     
     var inputImages =  this.getProductImages(i);
@@ -181,6 +175,17 @@ export class ProductsComponent implements OnInit {
   } */
   onFileChanged(event){
     console.log(event);
+  }
+
+  //this method make preview images loaded in the product 
+  previewImage(event, i,y){
+    if(event.target.files.length > 0 ){
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (_event) => {
+        (this.productForm as any).get('productFormItems').controls[i].controls.images.controls[y].value = reader.result; 
+      }
+    }
   }
   
   
