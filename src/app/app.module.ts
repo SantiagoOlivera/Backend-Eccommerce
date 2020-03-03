@@ -31,6 +31,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MainComponent } from './main/main.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatExpansionModule} from '@angular/material/expansion'; 
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { MatFileUploadModule } from 'angular-material-fileupload';
 //file upload
@@ -73,7 +74,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     MatInputModule,
     MatButtonModule,
     MatExpansionModule,
-    MatFileUploadModule
+    MatFileUploadModule,
+    MatTabsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

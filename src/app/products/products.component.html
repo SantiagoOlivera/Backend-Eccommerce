@@ -3,99 +3,113 @@
 
 <div class="formProducts">
 
-    <button (click)="addProduct()">Add Product</button>
-    <button>Buscar</button>
-    <button>Save</button>
-    <div class="new-products" >
-      <!-- Formulario de Productos general -->
-      <form [formGroup] = "productForm">
-        <div 
-          formArrayName = "productFormItems"
-          *ngFor = "let newItem of productForm.get('productFormItems')?.controls; let i = index">
-              <div 
-                [formGroupName]="i" 
-                class="new_product_{{i}}" 
-              >
-                  <mat-expansion-panel>
-                      <!-- header -->
-                      <mat-expansion-panel-header>
-                        <mat-panel-title>New Product</mat-panel-title>
-                        <mat-panel-description>Add product data</mat-panel-description>
-                        <div class="delete-product">
-                            <i class="material-icons" (click)="deleteProduct(i)">delete</i>
-                        </div> 
-                      </mat-expansion-panel-header>
-                      <!-- fields -->
-                      <mat-form-field>
-                        <input matInput placeholder="Title" formControlName="title">
-                      </mat-form-field> 
-                      <mat-form-field>
-                        <input matInput placeholder="SKU" formControlName="sku">
-                      </mat-form-field>
-                      <br>
-                      <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
-                      <button mat-raised-button (click)="addImage(i)">
-                        <i class="material-icons">add</i>
-                      </button>
-                      
-                      <div class="product-images" *ngFor="let image of productForm.get('productFormItems').controls[i].controls.images.controls; let y = index" >
-                        <div class="preview-image">
-                          <img [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"  
-                          width="50" 
-                          height="50" 
-                          *ngIf="productForm.get('productFormItems').controls[i].controls.images.controls[y].value">
-                        </div>
-                        <div class="image-input">
-                          <input (change)="previewImage($event, i, y)"  #fileInput type="file" ng2FileSelect [uploader] = "uploaders[i]" accept=".png, .jpg, .jpeg">
-                        </div>
-                        <div class="remove-image">
-                          <button mat-raised-button (click)="deleteImage(i, y)">
-                            <i class="material-icons">remove</i>
+    
+    <mat-tab-group>
+      <mat-tab label="New Products">  
+        <button mat-raised-button (click)="addProduct()">Add Product</button>
+        <button>Buscar</button>
+        <button>Save</button>
+
+        <div class="new-products" >
+          <!-- Formulario de Productos general -->
+          <form [formGroup] = "productForm">
+            <div 
+              formArrayName = "productFormItems"
+              *ngFor = "let newItem of productForm.get('productFormItems')?.controls; let i = index">
+                  <div 
+                    [formGroupName]="i" 
+                    class="new_product_{{i}}" 
+                  >
+                      <mat-expansion-panel>
+                          <!-- header -->
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>New Product</mat-panel-title>
+                            <mat-panel-description>Add product data</mat-panel-description>
+                            <div class="delete-product">
+                                <i class="material-icons" (click)="deleteProduct(i)">delete</i>
+                            </div> 
+                          </mat-expansion-panel-header>
+                          <!-- fields -->
+                          <mat-form-field>
+                            <input matInput placeholder="Title" formControlName="title">
+                          </mat-form-field> 
+                          <mat-form-field>
+                            <input matInput placeholder="SKU" formControlName="sku">
+                          </mat-form-field>
+                          <br>
+                          <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
+                          <button mat-raised-button (click)="addImage(i)">
+                            <i class="material-icons">add</i>
                           </button>
-                        </div>
-                      </div>
-                      
-                        <!-- <button type="button" mat-raised-button 
-                          (click)="uploader.uploadAll()"
-                          [disabled] = "!uploader.getNotUploadedItems().length"
-                          >Choose File
-                        </button> -->
-                      <br>
-                      <br>
-                      <mat-form-field>
-                          <textarea matInput placeholder="Description" formControlName="description"></textarea>
-                      </mat-form-field>
-                      <br>
-                      <label>$</label>
-                      <mat-form-field>
-                          <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
-                      </mat-form-field>
-                      <!-- <mat-form-field>
-                          <input type="file" matInput >
-                      </mat-form-field> -->
-                      <button type="submit" mat-button (click)="saveProduct(i)">Save Product</button>
-                    </mat-expansion-panel>
-              </div>
+                          
+                          <div class="product-images" *ngFor="let image of productForm.get('productFormItems').controls[i].controls.images.controls; let y = index" >
+                            <div class="preview-image">
+                              <img 
+                                [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"  
+                                width="50" 
+                                height="50" 
+                                *ngIf="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
+                              >
+                            </div>
+                            <div class="image-input">
+                              <button  mat-raised-button (click)="file.click()" >Select image</button>
+                              <input  [hidden] = "true" (change)="previewImage($event, i, y)"  #file type="file" ng2FileSelect [uploader] = "uploaders[i]" accept=".png, .jpg, .jpeg">
+                            </div>
+                            <div class="remove-image">
+                              <button mat-raised-button (click)="deleteImage(i, y)">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </div>
+                          </div>
+                          
+                            <!-- <button type="button" mat-raised-button 
+                              (click)="uploader.uploadAll()"
+                              [disabled] = "!uploader.getNotUploadedItems().length"
+                              >Choose File
+                            </button> -->
+                          <br>
+                          <br>
+                          <mat-form-field>
+                              <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                          </mat-form-field>
+                          <br>
+                          <label>$</label>
+                          <mat-form-field>
+                              <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
+                          </mat-form-field>
+                          <!-- <mat-form-field>
+                              <input type="file" matInput >
+                          </mat-form-field> -->
+                          <button type="submit" mat-button (click)="saveProduct(i)">Save Product</button>
+                        </mat-expansion-panel>
+                  </div>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-    <!-- Products in MongoDB -->
-    <div class="productItem" *ngFor="let products of data">
-        <mat-accordion>
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>{{ products.name }}</mat-panel-title>
-                <mat-panel-description>Type your name and age</mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-form-field>
-                <input matInput placeholder="First name">
-              </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Age">
-              </mat-form-field>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
+        <!-- Products in MongoDB -->
+        <div class="productItem" *ngFor="let products of data">
+            <mat-accordion>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>{{ products.name }}</mat-panel-title>
+                    <mat-panel-description>Type your name and age</mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-form-field>
+                    <input matInput placeholder="First name">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <input matInput placeholder="Age">
+                  </mat-form-field>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+      </mat-tab>
+    <mat-tab label="Products"> Content 2 
+      
+    </mat-tab>
+    </mat-tab-group>
+    
 </div>
 
 
