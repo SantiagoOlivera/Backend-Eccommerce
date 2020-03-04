@@ -6,7 +6,10 @@
     
     <mat-tab-group>
       <mat-tab label="New Products">  
-        <button mat-raised-button (click)="addProduct()">Add Product</button>
+        <button mat-raised-button (click)="addProduct()">
+            <i class="material-icons">add</i>
+          Add Product
+        </button>
         <button>Buscar</button>
         <button>Save</button>
 
@@ -40,14 +43,15 @@
                           <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
                           <button mat-raised-button (click)="addImage(i)">
                             <i class="material-icons">add</i>
+                            Add image
                           </button>
                           
                           <div class="product-images" *ngFor="let image of productForm.get('productFormItems').controls[i].controls.images.controls; let y = index" >
                             <div class="preview-image">
                               <img 
-                                [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"  
+                                [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value" 
                                 width="50" 
-                                height="50" 
+                                height="50"
                                 *ngIf="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
                               >
                             </div>
@@ -105,8 +109,11 @@
         </div>
 
       </mat-tab>
-    <mat-tab label="Products"> Content 2 
-      
+    <mat-tab label="Edit Products"> 
+        <button mat-raised-button>
+            <i class="material-icons">search</i>
+          Buscar
+        </button>
     </mat-tab>
     </mat-tab-group>
     

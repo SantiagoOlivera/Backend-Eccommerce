@@ -31,7 +31,9 @@ export class ProductsComponent implements OnInit {
   productForm: FormGroup;
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
-  uploaders: Array<FileUploader> = []
+  uploaders: Array<FileUploader> = [];
+
+  defaultImage: '.\src\assets\img\products-images\noimage.png';
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
@@ -41,6 +43,7 @@ export class ProductsComponent implements OnInit {
                private http: HttpClient,
   ) { 
       //this.getProducts();
+
   }
   
   //ngInit se ejecuta cuando termina la carga del componente
@@ -179,8 +182,8 @@ export class ProductsComponent implements OnInit {
 
   //this method make preview images loaded in the product 
   previewImage(event, i,y){
+    var reader = new FileReader();
     if(event.target.files.length > 0 ){
-      var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (_event) => {
         (this.productForm as any).get('productFormItems').controls[i].controls.images.controls[y].value = reader.result; 
@@ -188,5 +191,13 @@ export class ProductsComponent implements OnInit {
     }
   }
   
+  getImageSource(i, y){
+
+    if((this.productForm as any).get('productFormItems').controls[i].controls.images.controls[y].value){
+      return (this.productForm as any).get('productFormItems').controls[i].controls.images.controls[y].value;
+    }
+
+    return "src\assets\img\products-images\noimage.png";
+  }
   
 }
