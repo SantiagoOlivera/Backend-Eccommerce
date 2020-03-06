@@ -52,9 +52,14 @@
                                 [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value" 
                                 width="50" 
                                 height="50"
-                                *ngIf="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
+                                *ngIf ="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
                               >
+                              
                             </div>
+                            <img src="assets\img\products-images\noimage.png" alt=""  width="50" 
+                              height="50"
+                              *ngIf ="!productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
+                              >
                             <div class="image-input">
                               <button  mat-raised-button (click)="file.click()" >Select image</button>
                               <input  [hidden] = "true" (change)="previewImage($event, i, y)"  #file type="file" ng2FileSelect [uploader] = "uploaders[i]" accept=".png, .jpg, .jpeg">
