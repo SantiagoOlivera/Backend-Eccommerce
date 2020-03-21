@@ -8,6 +8,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { PurchasesComponent }  from './purchases/purchases.component';
 import { LoginComponent }      from './login/login.component';
 import { SignupComponent }     from './signup/signup.component';
+import { ConfigurationSettingsComponent } from './configuration-settings/configuration-settings.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
    { path: "categories", component: CategoriesComponent },
    { path: "purchases",  component: PurchasesComponent  },
    { path: "login",      component: LoginComponent      },
-   { path: "signup",     component: SignupComponent    }
+   { path: "signup",     component: SignupComponent     },
+   { path: "configuration-settings", component: ConfigurationSettingsComponent  }
 ];
 
 

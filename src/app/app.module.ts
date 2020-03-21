@@ -36,6 +36,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 //file upload
 import { FileSelectDirective } from 'ng2-file-upload';
+import { ConfigurationSettingsComponent } from './configuration-settings/configuration-settings.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     SignupComponent,
     MainComponent,
     TwoDigitDecimalNumberDirective,
-    FileSelectDirective
+    FileSelectDirective,
+    ConfigurationSettingsComponent
 
   ],
   imports: [

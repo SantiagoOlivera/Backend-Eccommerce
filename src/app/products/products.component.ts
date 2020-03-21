@@ -54,7 +54,13 @@ export class ProductsComponent implements OnInit {
     //overide the onCompleteItem property of the uploader so we are 
     //able to deal with the server response.
     
+
+    //Get default image
+    this.getDefaultImage()
+    
   }
+
+  
 
   getProducts(){
     this.productsService.getProducts().subscribe(data => {
@@ -131,11 +137,11 @@ export class ProductsComponent implements OnInit {
     }
   }
   addImage(i){
+      
       console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
       (this.productForm as any).get('productFormItems').controls[i].controls.images.push(
         new FormControl(),
       );
-    //console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
   }
   deleteImage(i , y){
     (this.productForm as any).get('productFormItems').controls[i].controls.images.removeAt(y);
@@ -171,11 +177,7 @@ export class ProductsComponent implements OnInit {
   getProductImages(i){
     return document.querySelectorAll('.new_product_' + i + ' input[type="file"]' );
   }
-  /* uploadFile(){
-    const fd = new FormData();
-    fd.append('image');
-    this.http.post('http://localhost:4200/');
-  } */
+  
   onFileChanged(event){
     console.log(event);
   }
@@ -190,14 +192,25 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
-  
-  getImageSource(i, y){
+  //function to get the default Image in setted in the configuration
+  getDefaultImage(){
+    this.http.get('/assets/img/products-images/noimage.png', { responseType: 'blob' })
+      .subscribe(blob => {
+        const reader = new FileReader();
+        const binaryString = reader.readAsDataURL(blob);
+        reader.onload = (event: any) => {
+          console.log('Image in Base64: ', event.target.result);
+          this.defaultImage = event.target.result;
+        };
+        reader.onerror = (event: any) => {
+          console.log("File could not be read: " + event.target.error.code);
+          this.defaultImage = event.target.error.code;
+        };
 
-    if((this.productForm as any).get('productFormItems').controls[i].controls.images.controls[y].value){
-      return (this.productForm as any).get('productFormItems').controls[i].controls.images.controls[y].value;
-    }
-
-    return "src\assets\img\products-images\noimage.png";
+      });
   }
+
+ 
+  
   
 }

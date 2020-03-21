@@ -26,7 +26,8 @@
                       <mat-expansion-panel>
                           <!-- header -->
                           <mat-expansion-panel-header>
-                            <mat-panel-title>New Product</mat-panel-title>
+                            
+                            <mat-panel-title><span>{{ i + 1 }}</span>  &nbsp; New Product</mat-panel-title>
                             <mat-panel-description>Add product data</mat-panel-description>
                             <div class="delete-product">
                                 <i class="material-icons" (click)="deleteProduct(i)">delete</i>
@@ -49,17 +50,11 @@
                           <div class="product-images" *ngFor="let image of productForm.get('productFormItems').controls[i].controls.images.controls; let y = index" >
                             <div class="preview-image">
                               <img 
-                                [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value" 
+                                [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value || defaultImage" 
                                 width="50" 
                                 height="50"
-                                *ngIf ="productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
                               >
-                              
                             </div>
-                            <img src="assets\img\products-images\noimage.png" alt=""  width="50" 
-                              height="50"
-                              *ngIf ="!productForm.get('productFormItems').controls[i].controls.images.controls[y].value"
-                              >
                             <div class="image-input">
                               <button  mat-raised-button (click)="file.click()" >Select image</button>
                               <input  [hidden] = "true" (change)="previewImage($event, i, y)"  #file type="file" ng2FileSelect [uploader] = "uploaders[i]" accept=".png, .jpg, .jpeg">
@@ -70,12 +65,6 @@
                               </button>
                             </div>
                           </div>
-                          
-                            <!-- <button type="button" mat-raised-button 
-                              (click)="uploader.uploadAll()"
-                              [disabled] = "!uploader.getNotUploadedItems().length"
-                              >Choose File
-                            </button> -->
                           <br>
                           <br>
                           <mat-form-field>
