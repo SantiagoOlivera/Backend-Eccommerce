@@ -10,8 +10,14 @@
             <i class="material-icons">add</i>
           Add Product
         </button>
-        <button>Buscar</button>
-        <button>Save</button>
+        <button mat-raised-button>
+            <i class="material-icons">search</i>
+          Buscar
+        </button>
+        <button mat-raised-button>
+            <i class="material-icons">save</i>
+          Save All
+        </button>
 
         <div class="new-products" >
           <!-- Formulario de Productos general -->
@@ -34,26 +40,35 @@
                             </div> 
                           </mat-expansion-panel-header>
                           <!-- fields -->
-                          <mat-form-field>
+                          <mat-form-field class="title">
                             <input matInput placeholder="Title" formControlName="title">
-                          </mat-form-field> 
-                          <mat-form-field>
+                          </mat-form-field>
+                          <br>
+                          <mat-form-field class="sku">
                             <input matInput placeholder="SKU" formControlName="sku">
                           </mat-form-field>
                           <br>
-                          <!-- <input  #fileInput type="file" name="image" ng2FileSelect [uploader] = "uploader" accept=".png, .jpg, .jpeg" > -->
+                          <mat-form-field class="description">
+                              <textarea  matInput placeholder="Description" formControlName="description"></textarea>
+                          </mat-form-field>
+                          <br>
+                          <label>$ &nbsp;</label>
+                          <mat-form-field class="price">
+                              <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
+                          </mat-form-field>
+                          <br>
                           <button mat-raised-button (click)="addImage(i)">
                             <i class="material-icons">add</i>
                             Add image
                           </button>
-                          
+                          <br>
                           <div class="product-images" *ngFor="let image of productForm.get('productFormItems').controls[i].controls.images.controls; let y = index" >
                             <div class="preview-image">
                               <img 
-                                [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value || defaultImage" 
-                                width="50" 
-                                height="50"
-                              >
+                              [src]="productForm.get('productFormItems').controls[i].controls.images.controls[y].value || defaultImage" 
+                              width="50" 
+                              height="50"
+                            >
                             </div>
                             <div class="image-input">
                               <button  mat-raised-button (click)="file.click()" >Select image</button>
@@ -66,19 +81,7 @@
                             </div>
                           </div>
                           <br>
-                          <br>
-                          <mat-form-field>
-                              <textarea matInput placeholder="Description" formControlName="description"></textarea>
-                          </mat-form-field>
-                          <br>
-                          <label>$</label>
-                          <mat-form-field>
-                              <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
-                          </mat-form-field>
-                          <!-- <mat-form-field>
-                              <input type="file" matInput >
-                          </mat-form-field> -->
-                          <button type="submit" mat-button (click)="saveProduct(i)">Save Product</button>
+                          <button class="save-product-button" type="submit" mat-raised-button (click)="saveProduct(i)">Save Product</button>
                         </mat-expansion-panel>
                   </div>
             </div>
@@ -126,4 +129,7 @@
 
 <!-- <label >Upload file</label>
 <input id="singleFile" type="file" /> -->
+
+
+
 

@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit {
   productFormItems: FormArray;
   newProducts: Array<Number> = [];
   uploaders: Array<FileUploader> = [];
+  categories: JSON;
 
   defaultImage: '.\src\assets\img\products-images\noimage.png';
 
@@ -95,17 +96,36 @@ export class ProductsComponent implements OnInit {
     
   }
   
-  async saveProduct(i){
-    /* console.log(i);
-    this.deleteNullImages(i);
-    var images = this.getProductImages(i);
-    console.log(images); */
-    console.log(this.uploader);
-    console.log(this.uploaders);
+  saveProduct(i){
+   
+    var imagesNames = new Array();  
+    var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
+
+    
     this.uploaders[i].uploadAll();
     this.uploaders[i].onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploaders[i].onCompleteItem = (item:any, response:any, status:any, headers:any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
+      
+      //add to variable images names
+      imagesNames.push(JSON.parse(response).data.filename);
+      
+      //si la cantidad de imagenes subidas es igual a la cantidad de images en el formlario del reporte
+      if(imagesNames.length === cantImagesToUpload){
+        console.log(imagesNames);
+        
+        //add images names to product form
+        this.productForm.value.productFormItems[i].images = imagesNames;
+        console.log(this.productForm.value.productFormItems[i]);
+        
+        this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
+          var data = rta['data'];
+          var message = rta['message'];
+          console.log(rta);
+        }); 
+      
+      }
+
     }
     /* this.uploader.uploadAll();
     
@@ -136,6 +156,7 @@ export class ProductsComponent implements OnInit {
       (this.productForm as any).get('productFormItems').removeAt(i);
     }
   }
+
   addImage(i){
       
       console.log((this.productForm as any).get('productFormItems').controls[i].controls.images);
@@ -143,11 +164,13 @@ export class ProductsComponent implements OnInit {
         new FormControl(),
       );
   }
+
   deleteImage(i , y){
     (this.productForm as any).get('productFormItems').controls[i].controls.images.removeAt(y);
     //console.log(document.querySelectorAll('.new_product_' + i + ' input[type="file"]' ));
     //return document.querySelectorAll('.new_product_' + i + ' input[type="file"]' );
   }
+  
   deleteNullImages(i){
     
     var inputImages =  this.getProductImages(i);
@@ -192,6 +215,7 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
+
   //function to get the default Image in setted in the configuration
   getDefaultImage(){
     this.http.get('/assets/img/products-images/noimage.png', { responseType: 'blob' })
@@ -211,6 +235,7 @@ export class ProductsComponent implements OnInit {
   }
 
  
+  
   
   
 }
