@@ -86,7 +86,27 @@
 .price{
     width: 150px;
 }
-.save-product-button{
+.save-product{
     max-width: 420px;
-    width:100%
+    width: 100%;
+    height: auto;
 }
+.save-product-effect{
+    
+    width: 0;
+    height: 50px;
+    transition: transform 3s ease;
+    border: 1px solid black;
+}
+.save-product:hover .save-product-effect{
+    width: 100%;
+}
+.save-product-button{
+    
+    width: 100%;
+}
+
+
+
+
+
