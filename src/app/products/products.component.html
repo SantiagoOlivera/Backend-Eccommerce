@@ -82,16 +82,18 @@
                           </div>
                           <br>
                           <div class="save-product">
-                              <div class="save-product-effect">
+                              <!-- <div class="save-product-effect">
                                   
-                              </div>
+                              </div> -->
                               
                               <button 
-                                      class="save-product-button" 
-                                      type="submit" 
-                                      mat-raised-button 
-                                      (click)="saveProduct(i)">
-                                      Save Product
+                                  class="save-product-button" 
+                                  type="submit" 
+                                  mat-raised-button 
+                                  (click)="saveProduct(i)"
+                                  [ngStyle]="{'background-size': 'variable' + '%'}"
+                                  >
+                                        Save Product
                               </button>
                           </div>
 

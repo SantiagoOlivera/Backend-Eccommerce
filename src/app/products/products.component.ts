@@ -34,7 +34,9 @@ export class ProductsComponent implements OnInit {
   uploaders: Array<FileUploader> = [];
   categories: JSON;
 
-  defaultImage: '.\src\assets\img\products-images\noimage.png';
+
+  defaultImage: null;
+  variable: Number=100;
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
@@ -77,6 +79,7 @@ export class ProductsComponent implements OnInit {
       description: new FormControl('', Validators.required),
       price:       new FormControl('', Validators.required),
       images:      new FormArray([]),
+      savePorcentage: new Number(0),
     });
     
   }
@@ -97,6 +100,8 @@ export class ProductsComponent implements OnInit {
   }
   
   saveProduct(i){
+
+    this.variable = 200;
    
     var imagesNames = new Array();  
     var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
@@ -233,7 +238,11 @@ export class ProductsComponent implements OnInit {
 
       });
   }
+ 
+  loadButtonBarProgress(porcentage){
 
+
+  }
  
   
   
