@@ -241,7 +241,7 @@ export class ProductsComponent implements OnInit {
   }
  
   loadButtonBarProgress(porcentage){
-
+    
 
   }
  
