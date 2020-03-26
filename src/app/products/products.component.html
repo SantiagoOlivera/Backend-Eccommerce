@@ -83,20 +83,18 @@
                           <br>
                           <div class="save-product">
                               
-
-                              
                               <button 
                                   class="save-product-button" 
                                   type="submit" 
                                   mat-raised-button 
                                   (click)="saveProduct(i)"
-                                  [ngStyle]="{'background-size': productForm.get('productFormItems').controls[i].controls.savePorcentage.value + '%'}"
+                                  [ngStyle]="{ 'background-size': newItem.controls.savePorcentage.value + '%'  }"
                                   >
-                                  Save Product
+                                  <span [ngStyle]="{ 'font-style': newItem.controls.savePorcentage.value == 0 ? 'normal' : 'italic' }">
+                                    {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
+                                  </span>
                               </button>
-                              <span>
-                                  {{ newItem.controls.savePorcentage.value * 0.5 + '%' }}
-                              </span>
+                              
                           </div>
 
                           

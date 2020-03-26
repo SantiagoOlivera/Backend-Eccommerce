@@ -92,17 +92,7 @@
     width: 100%;
     height: auto;
 }
-/* .save-product-effect{
-    position: absolute;
-    z-index: 10;
-    width: 0;
-    height: 100%;
-    transition: transform 3s ease;
-    border: 1px solid black;
-}
-.save-product:hover .save-product-effect{
-    width: 100%;
-} */
+
 .save-product-button{
   width: 100%;
   background: linear-gradient(to right, var(--menu) 50%, white 50%);
@@ -111,7 +101,9 @@
   background-position: right left;
   transition: all .5s ease-out;
 }
-
+.save-product span{
+    font-style: normal;
+}
 /* .save-product-button:hover{
     background-size: 175%;
 } */

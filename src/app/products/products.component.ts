@@ -102,11 +102,14 @@ export class ProductsComponent implements OnInit {
   
   saveProduct(i){
 
-    (this.productForm as any).get('productFormItems').controls[i].controls.savePorcentage.value = 200;
+
+
+    
    
     var imagesNames = new Array();  
     var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
 
+    this.loadButtonProgressBar(i,25);
     
     this.uploaders[i].uploadAll();
     this.uploaders[i].onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -128,6 +131,7 @@ export class ProductsComponent implements OnInit {
           var data = rta['data'];
           var message = rta['message'];
           console.log(rta);
+          this.loadButtonProgressBar(i,100);
         }); 
       
       }
@@ -240,9 +244,9 @@ export class ProductsComponent implements OnInit {
       });
   }
  
-  loadButtonBarProgress(porcentage){
-    
-
+  //function to change porcentage button bar progress to save the product
+  loadButtonProgressBar(i,porcentage){
+    (this.productForm as any).get('productFormItems').controls[i].controls.savePorcentage.value = porcentage * 2;
   }
  
   
