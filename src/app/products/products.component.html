@@ -52,7 +52,7 @@
                               <textarea  matInput placeholder="Description" formControlName="description"></textarea>
                           </mat-form-field>
                           <br>
-                          <label>$ &nbsp;</label>
+                          <label>$&nbsp;</label>
                           <mat-form-field class="price">
                               <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
                           </mat-form-field>
@@ -82,19 +82,21 @@
                           </div>
                           <br>
                           <div class="save-product">
-                              <!-- <div class="save-product-effect">
-                                  
-                              </div> -->
+                              
+
                               
                               <button 
                                   class="save-product-button" 
                                   type="submit" 
                                   mat-raised-button 
                                   (click)="saveProduct(i)"
-                                  [ngStyle]="{'background-size': 'variable' + '%'}"
+                                  [ngStyle]="{'background-size': productForm.get('productFormItems').controls[i].controls.savePorcentage.value + '%'}"
                                   >
-                                        Save Product
+                                  Save Product
                               </button>
+                              <span>
+                                  {{ newItem.controls.savePorcentage.value * 0.5 + '%' }}
+                              </span>
                           </div>
 
                           

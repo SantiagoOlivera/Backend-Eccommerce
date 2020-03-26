@@ -106,7 +106,7 @@
 .save-product-button{
   width: 100%;
   background: linear-gradient(to right, var(--menu) 50%, white 50%);
-  /* background-size: 0%; */
+  background-size: 0%;
   background-repeat: no-repeat;
   background-position: right left;
   transition: all .5s ease-out;

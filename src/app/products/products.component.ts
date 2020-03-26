@@ -36,7 +36,6 @@ export class ProductsComponent implements OnInit {
 
 
   defaultImage: null;
-  variable: Number=100;
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
@@ -96,12 +95,14 @@ export class ProductsComponent implements OnInit {
       this.productFormItems.push(this.createProductFormItem());
     }
     this.uploaders.push( new FileUploader({url: this.URL, itemAlias: 'image'}));
+
+    console.log(this.productForm.get('productFormItems'));
     
   }
   
   saveProduct(i){
 
-    this.variable = 200;
+    (this.productForm as any).get('productFormItems').controls[i].controls.savePorcentage.value = 200;
    
     var imagesNames = new Array();  
     var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
