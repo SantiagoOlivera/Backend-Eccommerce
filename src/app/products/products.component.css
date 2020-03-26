@@ -103,10 +103,19 @@
 }
 .save-product-button-font{
     font-style: normal;
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s;
+
 }
 .saving-product-button-font{
     font-style: italic;
     font-family: Arial;
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+    transform: skewX(-20deg);
 }
 /* .save-product-button:hover{
     background-size: 175%;

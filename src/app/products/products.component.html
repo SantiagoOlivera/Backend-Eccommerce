@@ -94,7 +94,7 @@
                                     'save-product-button-font': newItem.controls.savePorcentage.value == 0 ,
                                     'saving-product-button-font': newItem.controls.savePorcentage.value > 0
                                 }">
-                                    {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
+                                    {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' :  newItem.controls.savePorcentage.value * 0.5 == 100 ? 'Product Saved' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
                                   </span>
                               </button>
                               

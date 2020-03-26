@@ -110,6 +110,8 @@ export class ProductsComponent implements OnInit {
     var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
 
     this.loadButtonProgressBar(i,25);
+
+    this.loadButtonProgressBar(i,100);
     
     this.uploaders[i].uploadAll();
     this.uploaders[i].onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -135,6 +137,8 @@ export class ProductsComponent implements OnInit {
         }); 
       
       }
+
+      
 
     }
     /* this.uploader.uploadAll();
