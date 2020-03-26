@@ -90,7 +90,10 @@
                                   (click)="saveProduct(i)"
                                   [ngStyle]="{ 'background-size': newItem.controls.savePorcentage.value + '%'  }"
                                   >
-                                  <span [ngStyle]="{ 'font-style': newItem.controls.savePorcentage.value == 0 ? 'normal' : 'italic' }">
+                                  <span [ngClass]="{  
+                                    'save-product-button-font': newItem.controls.savePorcentage.value == 0 ,
+                                    'saving-product-button-font': newItem.controls.savePorcentage.value > 0
+                                }">
                                     {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
                                   </span>
                               </button>

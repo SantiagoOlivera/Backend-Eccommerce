@@ -101,8 +101,12 @@
   background-position: right left;
   transition: all .5s ease-out;
 }
-.save-product span{
+.save-product-button-font{
     font-style: normal;
+}
+.saving-product-button-font{
+    font-style: italic;
+    font-family: Arial;
 }
 /* .save-product-button:hover{
     background-size: 175%;
