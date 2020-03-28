@@ -21,6 +21,7 @@
 
         <div class="new-products" >
           <!-- Formulario de Productos general -->
+          <mat-accordion #accordion="matAccordion" [multi]="false">
           <form [formGroup] = "productForm">
             <div 
               formArrayName = "productFormItems"
@@ -34,7 +35,7 @@
                           <mat-expansion-panel-header>
                             
                             <mat-panel-title><span>{{ i + 1 }}</span>  &nbsp; New Product</mat-panel-title>
-                            <mat-panel-description>Add product data</mat-panel-description>
+                            <mat-panel-description>Open panel to add product data</mat-panel-description>
                             <div class="delete-product">
                                 <i class="material-icons" (click)="deleteProduct(i)">delete</i>
                             </div> 
@@ -106,6 +107,7 @@
                   </div>
             </div>
           </form>
+        </mat-accordion>
         </div>
         <!-- Products in MongoDB -->
         <div class="productItem" *ngFor="let products of data">

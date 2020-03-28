@@ -19,6 +19,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   }
 
 })
+
 /* @NgModule({
   imports: [MatExpansionModule]
 }) */
@@ -35,7 +36,11 @@ export class ProductsComponent implements OnInit {
   categories: JSON;
 
 
+
   defaultImage: null;
+
+
+  panelOpenState = false;
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
   //del componente
@@ -79,6 +84,7 @@ export class ProductsComponent implements OnInit {
       price:       new FormControl('', Validators.required),
       images:      new FormArray([]),
       savePorcentage: new Number(0),
+      
     });
     
   }
@@ -109,15 +115,18 @@ export class ProductsComponent implements OnInit {
     var imagesNames = new Array();  
     var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
 
-    this.loadButtonProgressBar(i,25);
+    //set porcentage of button bar progress according 
+    var porcentageProgressByImage = ((100-10) / cantImagesToUpload);
 
-    this.loadButtonProgressBar(i,100);
+    
+
+   
     
     this.uploaders[i].uploadAll();
     this.uploaders[i].onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploaders[i].onCompleteItem = (item:any, response:any, status:any, headers:any) => {
       console.log("ImageUpload:uploaded:", item, status, response);
-      
+      this.loadButtonProgressBar(i,porcentageProgressByImage);
       //add to variable images names
       imagesNames.push(JSON.parse(response).data.filename);
       
@@ -127,13 +136,18 @@ export class ProductsComponent implements OnInit {
         
         //add images names to product form
         this.productForm.value.productFormItems[i].images = imagesNames;
-        console.log(this.productForm.value.productFormItems[i]);
+        //console.log(this.productForm.value.productFormItems[i]);
+        
         
         this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
           var data = rta['data'];
           var message = rta['message'];
-          console.log(rta);
-          this.loadButtonProgressBar(i,100);
+          //console.log(rta);
+          
+          //if status is success set 100% button bar progress
+          if(rta['status']==='success'){
+            this.loadButtonProgressBar(i,10);
+          }
         }); 
       
       }
@@ -247,10 +261,13 @@ export class ProductsComponent implements OnInit {
 
       });
   }
+
+
+  
  
   //function to change porcentage button bar progress to save the product
   loadButtonProgressBar(i,porcentage){
-    (this.productForm as any).get('productFormItems').controls[i].controls.savePorcentage.value = porcentage * 2;
+    (this.productForm as any).get('productFormItems').controls[i].controls.savePorcentage.value += porcentage * 2;
   }
  
   
