@@ -145,8 +145,12 @@ export class ProductsComponent implements OnInit {
           //console.log(rta);
           
           //if status is success set 100% button bar progress
-          if(rta['status']==='success'){
-            this.loadButtonProgressBar(i,10);
+          switch(rta['status']){
+            case 'success':
+              this.loadButtonProgressBar(i,10);
+            break;
+            case 'error':
+            break;
           }
         }); 
       
