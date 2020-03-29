@@ -101,7 +101,15 @@
                                     'save-product-button-font': newItem.controls.savePorcentage.value == 0 ,
                                     'saving-product-button-font': newItem.controls.savePorcentage.value > 0
                                 }">
-                                    <mat-progress-spinner mode="indeterminate" diameter="20"></mat-progress-spinner>
+                                  <div [hidden] = "newItem.controls.savePorcentage.value == 0 ? true : false ">
+                                      <mat-progress-spinner 
+                                      mode="indeterminate" 
+                                      diameter="20"
+                                      >
+                                      </mat-progress-spinner>
+                                  </div>
+                                    
+                                   
                                     {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' :  newItem.controls.savePorcentage.value * 0.5 == 100 ? 'Product Saved' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
                                   </span>
                                   
