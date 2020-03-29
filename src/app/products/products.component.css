@@ -82,6 +82,7 @@
 .description{
     /* max-width: 300px; */
     width: 100%;
+    max-width: 420px;
 }
 .price{
     width: 150px;
@@ -131,7 +132,6 @@
 .save-product-button:hover span{
     color: white; 
 } */
-
 
 
 

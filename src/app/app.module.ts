@@ -32,6 +32,7 @@ import { MainComponent } from './main/main.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatExpansionModule} from '@angular/material/expansion'; 
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 import { MatFileUploadModule } from 'angular-material-fileupload';
 //file upload
@@ -77,7 +78,8 @@ import { ConfigurationSettingsComponent } from './configuration-settings/configu
     MatButtonModule,
     MatExpansionModule,
     MatFileUploadModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }

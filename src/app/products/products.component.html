@@ -5,7 +5,7 @@
 
     
     <mat-tab-group>
-      
+
       <mat-tab label="New Products">  
 
         <button mat-raised-button (click)="addProduct()">
@@ -43,21 +43,25 @@
                             </div> 
                           </mat-expansion-panel-header>
                           <!-- fields -->
-                          <mat-form-field class="title">
-                            <input matInput placeholder="Title" formControlName="title">
+                          <mat-form-field appearance="fill" class="title">
+                            <mat-label>Title</mat-label>
+                            <input matInput  formControlName="title">
                           </mat-form-field>
                           <br>
-                          <mat-form-field class="sku">
-                            <input matInput placeholder="SKU" formControlName="sku">
+                          <mat-form-field appearance="fill" class="sku">
+                            <mat-label>SKU</mat-label>
+                            <input matInput  formControlName="sku">
                           </mat-form-field>
                           <br>
-                          <mat-form-field class="description">
-                              <textarea  matInput placeholder="Description" formControlName="description"></textarea>
+                          <mat-form-field appearance="fill" class="description">
+                              <mat-label>Description</mat-label>
+                              <textarea  matInput  formControlName="description"></textarea>
                           </mat-form-field>
                           <br>
                           <label>$&nbsp;</label>
-                          <mat-form-field class="price">
-                              <input  matInput placeholder="Price" formControlName="price" appTwoDigitDecimalNumber/>
+                          <mat-form-field appearance="fill" class="price">
+                              <mat-label>Price</mat-label>
+                              <input  matInput  formControlName="price" appTwoDigitDecimalNumber/>
                           </mat-form-field>
                           <br>
                           <button mat-raised-button (click)="addImage(i)">
@@ -97,9 +101,12 @@
                                     'save-product-button-font': newItem.controls.savePorcentage.value == 0 ,
                                     'saving-product-button-font': newItem.controls.savePorcentage.value > 0
                                 }">
+                                    <mat-progress-spinner mode="indeterminate" diameter="20"></mat-progress-spinner>
                                     {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' :  newItem.controls.savePorcentage.value * 0.5 == 100 ? 'Product Saved' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
                                   </span>
+                                  
                               </button>
+
                               
                           </div>
 

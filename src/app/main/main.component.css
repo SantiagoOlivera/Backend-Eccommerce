@@ -22,13 +22,18 @@
 .login-button{
   float: right;
   height: 100%;
+  
 }
+
 .login-button i {
+  border-radius:50% ;
   padding: 3px;
   font-size: 45px;
 }
+
 .login-button i:hover{
   background-color: var(--menu-hover);
+  
 }
 
 
