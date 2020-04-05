@@ -17,4 +17,5 @@
 }
 .login-button i:hover{
     background-color: var(--menu-hover);
+    cursor: pointer;
 }

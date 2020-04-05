@@ -18,6 +18,7 @@ button{
 }
 button:hover{
     background-color: var(--menu-hover);
+    cursor: pointer;
 }
 button:disabled,
 button[disabled]{
