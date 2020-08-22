@@ -102,6 +102,8 @@
   background-position: right left;
   transition: all .5s ease-out;
 }
+
+
 .save-product-button-font{
     font-style: normal;
     -moz-transition: all 1s;
@@ -118,20 +120,6 @@
     -o-transform: skewX(-20deg);
     transform: skewX(-20deg);
 }
-/* .save-product-button:hover{
-    background-size: 175%;
-} */
-/* .save-product-button span{
-    text-align: center;
-  font-size: 16px;
-  line-height: 30px; 
-  color: black;
-  transition: all .6s ease-out;
-  display: block;
-}
-.save-product-button:hover span{
-    color: white; 
-} */
 
 
 

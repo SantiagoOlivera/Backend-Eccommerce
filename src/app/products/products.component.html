@@ -13,10 +13,6 @@
           Add Product
         </button>
         <button mat-raised-button>
-            <i class="material-icons">search</i>
-          Buscar
-        </button>
-        <button mat-raised-button>
             <i class="material-icons">save</i>
           Save All
         </button>
@@ -89,37 +85,31 @@
                           </div>
                           <br>
                           <div class="save-product">
-                              
-                              <button 
-                                  class="save-product-button" 
-                                  type="submit" 
-                                  mat-raised-button 
-                                  (click)="saveProduct(i)"
-                                  [ngStyle]="{ 'background-size': newItem.controls.savePorcentage.value + '%'  }"
-                                  >
-                                  <span [ngClass]="{  
-                                    'save-product-button-font': newItem.controls.savePorcentage.value == 0 ,
-                                    'saving-product-button-font': newItem.controls.savePorcentage.value > 0
-                                }">
-                                  <div [hidden] = "newItem.controls.savePorcentage.value == 0 ? true : false ">
-                                      <mat-progress-spinner 
-                                      mode="indeterminate" 
-                                      diameter="20"
-                                      >
-                                      </mat-progress-spinner>
-                                  </div>
+                             
+                                <button 
+                                    class="save-product-button" 
+                                    type="submit" 
+                                    mat-raised-button 
+                                    (click)="saveProduct(i)"
+                                    [ngStyle]="{ 'background-size': newItem.controls.savePorcentage.value + '%'  }"
+                                    >
+                                        <!-- <mat-progress-spinner 
+                                          mode="indeterminate" 
+                                          diameter="20"
+                                        >
+                                        </mat-progress-spinner> -->
                                     
-                                   
-                                    {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' :  newItem.controls.savePorcentage.value * 0.5 == 100 ? 'Product Saved' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
-                                  </span>
-                                  
-                              </button>
-
+                                        <span [ngClass]="{  
+                                            'save-product-button-font': newItem.controls.savePorcentage.value == 0 ,
+                                            'saving-product-button-font': newItem.controls.savePorcentage.value > 0
+                                          }">
+                                            {{ newItem.controls.savePorcentage.value == 0 ? 'Save Product' :  newItem.controls.savePorcentage.value * 0.5 == 100 ? 'Product Saved 100%' : 'Saving Product ' + newItem.controls.savePorcentage.value * 0.5 + '%' }}
+                                        </span>
+                   
+                                </button>
                               
                           </div>
 
-                          
-                          
                         </mat-expansion-panel>
                   </div>
             </div>

@@ -20,9 +20,6 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 })
 
-/* @NgModule({
-  imports: [MatExpansionModule]
-}) */
 
 export class ProductsComponent implements OnInit {
   public  URL = 'http://localhost:3000/fileupload/add';
@@ -34,12 +31,7 @@ export class ProductsComponent implements OnInit {
   newProducts: Array<Number> = [];
   uploaders: Array<FileUploader> = [];
   categories: JSON;
-
-
-
   defaultImage: null;
-
-
   panelOpenState = false;
 
   //el metodo constructor se ejecuta cuando se inicia la carga 
@@ -56,12 +48,12 @@ export class ProductsComponent implements OnInit {
   //ngInit se ejecuta cuando termina la carga del componente
   ngOnInit() {
     this.productForm  =  this.fb.group({});
+    
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    //this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     //overide the onCompleteItem property of the uploader so we are 
     //able to deal with the server response.
     
-
     //Get default image
     this.getDefaultImage()
     
@@ -106,21 +98,15 @@ export class ProductsComponent implements OnInit {
     
   }
   
-  saveProduct(i){
-
-
-
-    
+  saveProduct(i){    
    
     var imagesNames = new Array();  
     var cantImagesToUpload =  (this.productForm as any).get('productFormItems').controls[i].controls.images.length;
 
-    //set porcentage of button bar progress according 
+    //set porcentage of button bar progress according images quantity 
     var porcentageProgressByImage = ((100-10) / cantImagesToUpload);
 
-    
 
-   
     
     this.uploaders[i].uploadAll();
     this.uploaders[i].onAfterAddingFile = (file) => { file.withCredentials = false; };
@@ -142,7 +128,7 @@ export class ProductsComponent implements OnInit {
         this.productsService.addProduct(this.productForm.value.productFormItems[i]).subscribe(rta => {
           var data = rta['data'];
           var message = rta['message'];
-          //console.log(rta);
+          console.log(rta);
           
           //if status is success set 100% button bar progress
           switch(rta['status']){
@@ -228,15 +214,13 @@ export class ProductsComponent implements OnInit {
       cont++;
     });
   }
-
+  //
   getProductImages(i){
     return document.querySelectorAll('.new_product_' + i + ' input[type="file"]' );
   }
-  
   onFileChanged(event){
     console.log(event);
   }
-
   //this method make preview images loaded in the product 
   previewImage(event, i,y){
     var reader = new FileReader();
@@ -247,7 +231,6 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
-
   //function to get the default Image in setted in the configuration
   getDefaultImage(){
     this.http.get('/assets/img/products-images/noimage.png', { responseType: 'blob' })
@@ -266,15 +249,9 @@ export class ProductsComponent implements OnInit {
       });
   }
 
-
-  
- 
   //function to change porcentage button bar progress to save the product
   loadButtonProgressBar(i,porcentage){
     (this.productForm as any).get('productFormItems').controls[i].controls.savePorcentage.value += porcentage * 2;
   }
- 
-  
-  
-  
+   
 }
